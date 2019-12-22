@@ -8,6 +8,7 @@ import com.android.academy.R
 import com.android.academy.fragments.details.DetailsFragment
 import com.android.academy.fragments.list.MoviesFragment
 import com.android.academy.fragments.list.listeners.OnMovieClickListener
+import com.android.academy.fragments.pager.MoviesPagerFragment
 import com.android.academy.model.MovieModel
 
 class MainActivity : AppCompatActivity(), OnMovieClickListener {
@@ -31,21 +32,21 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
             supportFragmentManager.findFragmentByTag(MoviesFragment.TAG) as MoviesFragment
         }
 
-//        val moviesPagerFragment = MoviesPagerFragment()
-//        supportFragmentManager.beginTransaction().apply {
-//            if (tabletFragmentContainer == null) {
-//                //Phone mode
-//                addToBackStack(null)
-//                replace(R.id.activity_main_frame, moviesPagerFragment)
-//            } else {
-//                //Tablet mode
-//                replace(R.id.activity_main_tablet_frame, moviesPagerFragment)
-//            }
-//        }.commit()
-//
-//        moviesPagerFragment.loadMovies(moviesFragment.loadMovies().map {
-//            DetailsFragment.newInstance(it)
-//        })
+        val moviesPagerFragment = MoviesPagerFragment()
+        supportFragmentManager.beginTransaction().apply {
+            if (tabletFragmentContainer == null) {
+                //Phone mode
+                addToBackStack(null)
+                replace(R.id.activity_main_frame, moviesPagerFragment)
+            } else {
+                //Tablet mode
+                replace(R.id.activity_main_tablet_frame, moviesPagerFragment)
+            }
+        }.commit()
+
+        moviesPagerFragment.loadMovies(moviesFragment.loadMovies().map {
+            DetailsFragment.newInstance(it)
+        })
     }
 
     override fun onMovieClicked(movie: MovieModel) {
