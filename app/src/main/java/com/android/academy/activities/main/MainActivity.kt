@@ -31,21 +31,21 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
             supportFragmentManager.findFragmentByTag(MoviesFragment.TAG) as MoviesFragment
         }
 
-        val moviesPagerFragment = MoviesPagerFragment()
-        supportFragmentManager.beginTransaction().apply {
-            if (tabletFragmentContainer == null) {
-                //Phone mode
-                addToBackStack(null)
-                replace(R.id.activity_main_frame, moviesPagerFragment)
-            } else {
-                //Tablet mode
-                replace(R.id.activity_main_tablet_frame, moviesPagerFragment)
-            }
-        }.commit()
-
-        moviesPagerFragment.loadMovies(moviesFragment.loadMovies().map {
-            DetailsFragment.newInstance(it)
-        })
+//        val moviesPagerFragment = MoviesPagerFragment()
+//        supportFragmentManager.beginTransaction().apply {
+//            if (tabletFragmentContainer == null) {
+//                //Phone mode
+//                addToBackStack(null)
+//                replace(R.id.activity_main_frame, moviesPagerFragment)
+//            } else {
+//                //Tablet mode
+//                replace(R.id.activity_main_tablet_frame, moviesPagerFragment)
+//            }
+//        }.commit()
+//
+//        moviesPagerFragment.loadMovies(moviesFragment.loadMovies().map {
+//            DetailsFragment.newInstance(it)
+//        })
     }
 
     override fun onMovieClicked(movie: MovieModel) {
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
         supportFragmentManager.beginTransaction().apply {
             if (tabletFragmentContainer == null) {
                 //Phone mode
-                addToBackStack(null)
+//                addToBackStack(null)
                 replace(R.id.activity_main_frame, detailsFragment)
             } else {
                 //Tablet mode

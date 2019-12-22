@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.android.academy.R
-import com.android.academy.SamplePagerAdapter
+import com.android.academy.SimplePagerAdapter
 import com.android.academy.fragments.list.listeners.OnMovieClickListener
 
 class MoviesPagerFragment : Fragment() {
-    private lateinit var adapter: SamplePagerAdapter
+    private lateinit var adapter: SimplePagerAdapter
     private var listener: OnMovieClickListener? = null
     private var movies: List<Fragment> = ArrayList()
 
@@ -32,7 +32,7 @@ class MoviesPagerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = SamplePagerAdapter(activity!!.supportFragmentManager, movies)
+        adapter = SimplePagerAdapter(activity!!.supportFragmentManager, movies)
         (view as ViewPager).adapter = adapter
     }
 

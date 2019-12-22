@@ -31,11 +31,11 @@ class DetailsFragment : Fragment() {
 
 
     private fun initViews(view: View) {
-        detailsIvImage = view.findViewById(R.id.details_iv_image)
-        detailsTvTitle = view.findViewById(R.id.details_tv_title)
-        detailsTvReleasedDate = view.findViewById(R.id.details_tv_released_date)
-        detailsBtnTrailer = view.findViewById(R.id.details_btn_trailer)
-        detailsTvOverviewText = view.findViewById(R.id.details_tv_overview_text)
+        detailsIvImage = view.findViewById(R.id.details_fragment_poster)
+        detailsTvTitle = view.findViewById(R.id.details_fragment_title)
+        detailsTvReleasedDate = view.findViewById(R.id.details_fragment_release_date)
+        detailsBtnTrailer = view.findViewById(R.id.details_fragment_trailer_btn)
+        detailsTvOverviewText = view.findViewById(R.id.details_fragment_overview_text)
     }
 
     fun loadMovie(movie: MovieModel) {

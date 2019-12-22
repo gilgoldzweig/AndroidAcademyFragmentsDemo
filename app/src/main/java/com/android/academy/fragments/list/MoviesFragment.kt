@@ -12,8 +12,7 @@ import com.android.academy.fragments.list.adapters.MoviesViewAdapter
 import com.android.academy.fragments.list.listeners.OnMovieClickListener
 import com.android.academy.model.MovieModel
 
-class MoviesFragment : Fragment(),
-    OnMovieClickListener {
+class MoviesFragment : Fragment(), OnMovieClickListener {
 
     private var moviesRcv: RecyclerView? = null
 
