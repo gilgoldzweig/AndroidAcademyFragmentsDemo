@@ -13,11 +13,11 @@ import com.android.academy.model.MovieModel
 
 class DetailsFragment : Fragment() {
 
-    private lateinit var detailsIvImage: ImageView
-    private lateinit var detailsTvTitle: TextView
-    private lateinit var detailsTvReleasedDate: TextView
-    private lateinit var detailsBtnTrailer: Button
-    private lateinit var detailsTvOverviewText: TextView
+    private lateinit var posterImage: ImageView
+    private lateinit var titleText: TextView
+    private lateinit var releaseDateText: TextView
+    private lateinit var trailerButton: Button
+    private lateinit var overviewText: TextView
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -31,17 +31,17 @@ class DetailsFragment : Fragment() {
 
 
     private fun initViews(view: View) {
-        detailsIvImage = view.findViewById(R.id.details_fragment_poster)
-        detailsTvTitle = view.findViewById(R.id.details_fragment_title)
-        detailsTvReleasedDate = view.findViewById(R.id.details_fragment_release_date)
-        detailsBtnTrailer = view.findViewById(R.id.details_fragment_trailer_btn)
-        detailsTvOverviewText = view.findViewById(R.id.details_fragment_overview_text)
+        posterImage = view.findViewById(R.id.details_fragment_poster)
+        titleText = view.findViewById(R.id.details_fragment_title)
+        releaseDateText = view.findViewById(R.id.details_fragment_release_date)
+        trailerButton = view.findViewById(R.id.details_fragment_trailer_btn)
+        overviewText = view.findViewById(R.id.details_fragment_overview_text)
     }
 
     fun loadMovie(movie: MovieModel) {
-        detailsTvTitle.text = movie.name
-        detailsTvOverviewText.text = movie.overview
-        detailsIvImage.setImageResource(movie.imageRes)
+        titleText.text = movie.name
+        overviewText.text = movie.overview
+        posterImage.setImageResource(movie.imageRes)
     }
 
     companion object {

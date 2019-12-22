@@ -1,5 +1,6 @@
 package com.android.academy.activities.main
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +8,6 @@ import com.android.academy.R
 import com.android.academy.fragments.details.DetailsFragment
 import com.android.academy.fragments.list.MoviesFragment
 import com.android.academy.fragments.list.listeners.OnMovieClickListener
-import com.android.academy.fragments.pager.MoviesPagerFragment
 import com.android.academy.model.MovieModel
 
 class MainActivity : AppCompatActivity(), OnMovieClickListener {
@@ -51,15 +51,14 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
     override fun onMovieClicked(movie: MovieModel) {
         val detailsFragment = DetailsFragment.newInstance(movie)
 
-        supportFragmentManager.beginTransaction().apply {
-            if (tabletFragmentContainer == null) {
-                //Phone mode
+        with(supportFragmentManager.beginTransaction()) {
+            val frameLayoutId = if (tabletFragmentContainer == null) {
                 addToBackStack(null)
-                replace(R.id.activity_main_frame, detailsFragment)
-            } else {
-                //Tablet mode
-                replace(R.id.activity_main_tablet_frame, detailsFragment)
-            }
-        }.commit()
+                R.id.activity_main_frame
+            } else R.id.activity_main_tablet_frame
+
+            replace(frameLayoutId, detailsFragment)
+            commit()
+        }
     }
 }
