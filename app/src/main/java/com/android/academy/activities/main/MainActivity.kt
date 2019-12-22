@@ -1,11 +1,9 @@
 package com.android.academy.activities.main
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.android.academy.R
-import com.android.academy.fragments.details.DetailsFragment
 import com.android.academy.fragments.list.MoviesFragment
 import com.android.academy.fragments.list.listeners.OnMovieClickListener
 import com.android.academy.fragments.pager.MoviesPagerFragment
@@ -33,33 +31,23 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
         }
 
         val moviesPagerFragment = MoviesPagerFragment()
-        supportFragmentManager.beginTransaction().apply {
-            if (tabletFragmentContainer == null) {
-                //Phone mode
-                addToBackStack(null)
-                replace(R.id.activity_main_frame, moviesPagerFragment)
-            } else {
-                //Tablet mode
-                replace(R.id.activity_main_tablet_frame, moviesPagerFragment)
-            }
-        }.commit()
-
-        moviesPagerFragment.loadMovies(moviesFragment.loadMovies().map {
-            DetailsFragment.newInstance(it)
-        })
+        moviesPagerFragment.loadMovies(moviesFragment.loadMovies())
+        tabletFragmentContainer?.let {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.activity_main_tablet_frame, moviesPagerFragment)
+                .commit()
+        }
     }
 
     override fun onMovieClicked(movie: MovieModel) {
-        val detailsFragment = DetailsFragment.newInstance(movie)
-
-        with(supportFragmentManager.beginTransaction()) {
-            val frameLayoutId = if (tabletFragmentContainer == null) {
-                addToBackStack(null)
-                R.id.activity_main_frame
-            } else R.id.activity_main_tablet_frame
-
-            replace(frameLayoutId, detailsFragment)
-            commit()
+        val moviesPagerFragment = MoviesPagerFragment()
+        if (tabletFragmentContainer == null) {
+            //Phone mode
+            supportFragmentManager.beginTransaction()
+                .addToBackStack(null)
+                .replace(R.id.activity_main_frame, moviesPagerFragment)
+                .commit()
         }
+        moviesPagerFragment.selectMovie(movie)
     }
 }
