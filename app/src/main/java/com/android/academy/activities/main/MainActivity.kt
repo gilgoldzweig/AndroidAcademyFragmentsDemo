@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
         supportFragmentManager.beginTransaction().apply {
             if (tabletFragmentContainer == null) {
                 //Phone mode
-//                addToBackStack(null)
+                addToBackStack(null)
                 replace(R.id.activity_main_frame, detailsFragment)
             } else {
                 //Tablet mode
